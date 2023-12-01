@@ -139,7 +139,7 @@ void SetGlobalCalib(int w, int h, const Eigen::Matrix3f &K, float xi) {
 
 void SetGlobalMask(std::string mask_file) {
   if (mask_file != "") {
-    cv::Mat gray = cv::imread(mask_file, CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat gray = cv::imread(mask_file, cv::IMREAD_GRAYSCALE);
     threshold(gray, maskG[0], 100, 255, cv::THRESH_BINARY);
 
     for (int level = 1; level < pyrLevelsUsed; ++level) {

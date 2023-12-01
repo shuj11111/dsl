@@ -63,7 +63,7 @@ EurocReader::EurocReader(std::string _path, std::string config_filename) : path(
 
 void EurocReader::ReadImage(int idx) {
   std::string fn = image_path + "/" + filenames[idx] + file_ext;
-  gray_image = cv::imread(fn, CV_LOAD_IMAGE_GRAYSCALE);
+  gray_image = cv::imread(fn, cv::IMREAD_GRAYSCALE);
 }
 
 int EurocReader::ReadImage(const std::string& filename) {
@@ -73,7 +73,7 @@ int EurocReader::ReadImage(const std::string& filename) {
         std::distance(filenames.begin(), it);
 
     std::string fn = image_path + "/" + filename + file_ext;
-    gray_image = cv::imread(fn, CV_LOAD_IMAGE_GRAYSCALE);
+    gray_image = cv::imread(fn, cv::IMREAD_GRAYSCALE);
     return idx_in_filenames;
   } else {
     return -1;
