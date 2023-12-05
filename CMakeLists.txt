@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.7.2)
 project(dsl)
 
 set(CMAKE_CXX_STANDARD 17)
+set(DEFAULT_BUILD_TYPE "Release")
 
 add_definitions("-DENABLE_SSE")
 #set(CMAKE_CXX_FLAGS
@@ -92,7 +93,7 @@ set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} "--ftz=true;--prec-div=false;--prec-sqrt=
 set(SHADER_DIR "${PROJECT_SOURCE_DIR}/include/map_render/shaders" CACHE PATH "Where the shaders live")
 set(CMAKE_CXX_FLAGS ${ADDITIONAL_CMAKE_CXX_FLAGS} "-DSHADER_DIR=${SHADER_DIR}")
 
-set(CUDA_ARCH_BIN "30 35 50 52 61" CACHE STRING "Specify 'real' GPU arch to build binaries for, BIN(PTX) format is supported. Example: 1.3 2.1(1.3) or 13 21(13)")
+set(CUDA_ARCH_BIN "30 35 50 52 61 70 72 75 86 87" CACHE STRING "Specify 'real' GPU arch to build binaries for, BIN(PTX) format is supported. Example: 1.3 2.1(1.3) or 13 21(13)")
 set(CUDA_ARCH_PTX "" CACHE STRING "Specify 'virtual' PTX arch to build PTX intermediate code for. Example: 1.0 1.2 or 10 12")
 
 add_subdirectory(src)

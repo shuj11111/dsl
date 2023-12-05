@@ -26,8 +26,7 @@ def main():
 
     args = parser.parse_args()
 
-    print "Extract images from %s on topic %s into %s" % (args.bag_file,
-                                                          args.image_topic, args.output_dir)
+    print("Extract images from %s on topic %s into %s", args.bag_file, args.image_topic, args.output_dir)
 
     bag = rosbag.Bag(args.bag_file, "r")
     bridge = CvBridge()
@@ -52,7 +51,7 @@ def main():
         # output_img_path = str(os.path.join(args.output_dir, str(msg.header.stamp.secs) + "." + str(msg.header.stamp.nsecs).zfill(9) +".jpg"))
         output_img_path = str(os.path.join(args.output_dir, str(msg.header.stamp.to_nsec()) +".png"))
         cv2.imwrite(output_img_path, cv_img)
-        print "Wrote image %i %s" % (count, output_img_path) 
+        print("Wrote image %i %s", count, output_img_path) 
 
         count += 1
 

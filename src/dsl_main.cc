@@ -55,7 +55,7 @@ std::string ToTum(std::string time, const SE3 &se3) {
 int main(int argc, char **argv) {
   google::InitGoogleLogging(argv[0]);
 
-  gflags::ParseCommandLineFlags(&argc, &argv, true);
+  google::ParseCommandLineFlags(&argc, &argv, true);
   FLAGS_alsologtostderr = true;
 
   // settingDesiredImmatureDensity = 750;
