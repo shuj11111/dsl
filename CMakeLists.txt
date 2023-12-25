@@ -4,6 +4,18 @@ project(dsl)
 
 set(CMAKE_CXX_STANDARD 17)
 set(DEFAULT_BUILD_TYPE "Release")
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to '${DEFAULT_BUILD_TYPE}' as none was specified.")
+  set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}" CACHE STRING "Choose the type of build." FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+  add_compile_options(-g2 -DDEBUG)
+else()
+  add_compile_options(-Wall -O3 -DNDEBUG)
+endif()
 
 add_definitions("-DENABLE_SSE")
 #set(CMAKE_CXX_FLAGS
@@ -31,7 +43,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${CERES_INCLUDE_DIRS})
 include_directories(${PCL_INCLUDE_DIRS})
 
-find_package(Pangolin 0.4 REQUIRED)
+find_package(Pangolin 0.6 REQUIRED)
 include_directories(${Pangolin_INCLUDE_DIRS})
 
 find_package(Boost REQUIRED COMPONENTS system)
